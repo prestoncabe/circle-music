@@ -8,6 +8,7 @@ gem 'sqlite3'
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'capybara'
 end
 
 # Use SCSS for stylesheets
