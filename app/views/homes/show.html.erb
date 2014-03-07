@@ -1,2 +1,4 @@
-<%= link_to 'Sign up', sign_up_path %>
+<% if current_user.nil? %>
+  <%= link_to 'Sign up', sign_up_path %>
+<% end %>
 <p data-role='description'>Welcome to the music library for Circle of Hope</p>
