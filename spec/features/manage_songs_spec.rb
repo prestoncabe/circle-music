@@ -13,6 +13,19 @@ feature 'Add new song' do
     expect(page).to have_css 'li.song', text: 'Come Thou Fount'
   end
 
+  scenario 'from songs index' do
+    visit root_path
+
+    sign_up_as 'person@example.com'
+
+    visit songs_path
+    click_link 'Add a song'
+    fill_in 'Title', with: 'Come Thou Fount'
+    click_button 'Create Song'
+
+    expect(page).to have_css 'li.song', text: 'Come Thou Fount'
+  end
+
   scenario 'visitors cannot add songs from homepage' do
     visit root_path
 
@@ -26,3 +39,9 @@ feature 'Add new song' do
     expect(current_path).to eq sign_in_path
   end
 end
+
+# feature 'View songs' do
+  # scenario 'as a visitor' do
+    
+  # end
+# end
