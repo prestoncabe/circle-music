@@ -4,7 +4,7 @@ feature 'Add new song' do
   scenario 'from the homepage' do
     visit root_path
 
-    sign_up_as 'person@example.com'
+    sign_up
 
     click_link 'Add a song'
     fill_in 'Title', with: 'Come Thou Fount'
@@ -16,7 +16,7 @@ feature 'Add new song' do
   scenario 'from songs index' do
     visit root_path
 
-    sign_up_as 'person@example.com'
+    sign_up
 
     visit songs_path
     click_link 'Add a song'
@@ -40,8 +40,3 @@ feature 'Add new song' do
   end
 end
 
-# feature 'View songs' do
-  # scenario 'as a visitor' do
-    
-  # end
-# end
