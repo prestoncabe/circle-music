@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, except: [:index]
 
   def new
     @song = Song.new
