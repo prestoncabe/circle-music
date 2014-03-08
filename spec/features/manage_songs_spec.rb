@@ -12,4 +12,17 @@ feature 'Add new song' do
 
     expect(page).to have_css 'li.song', text: 'Come Thou Fount'
   end
+
+  scenario 'visitors cannot add songs from homepage' do
+    visit root_path
+
+    expect(page).not_to have_link 'Add a song'
+  end
+
+  scenario 'visitors cannot add songs via new_song_path' do
+    visit new_song_path
+
+    expect(page).to have_content 'Sign up'
+    expect(current_path).to eq sign_in_path
+  end
 end

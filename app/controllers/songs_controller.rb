@@ -1,4 +1,6 @@
 class SongsController < ApplicationController
+  before_filter :authorize
+
   def new
     @song = Song.new
   end
