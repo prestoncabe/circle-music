@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  before_filter :authorize, except: [:index]
+  before_filter :authorize, except: [:index, :show]
 
   def new
     @song = Song.new
@@ -13,6 +13,10 @@ class SongsController < ApplicationController
 
   def index
     @songs = Song.all
+  end
+
+  def show
+    @song = Song.find(params[:id])
   end
 
   private
