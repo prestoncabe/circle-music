@@ -33,4 +33,20 @@ feature 'View songs' do
     expect(page).to have_content 'Come Thou Fount'
     expect(page).not_to have_content 'Lord I Lift'
   end
+
+  scenario 'as a user on the songs show page' do
+    create_songs(['Come Thou Fount', 'Lord I Lift'])
+
+    visit songs_path
+    click_link 'Lord I Lift'
+
+    expect(page).to have_content 'Lord I Lift'
+    expect(page).not_to have_content 'Come Thou Fount'
+  end
+
+  def create_songs(song_titles)
+    song_titles.each do |song_title|
+      create(:song, title: song_title)
+    end
+  end
 end
