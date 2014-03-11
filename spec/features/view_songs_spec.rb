@@ -5,36 +5,41 @@ feature 'View songs' do
     create_songs ['Come Thou Fount', 'Lord I Lift']
   end
 
-  scenario 'as a visitor to songs index page' do
-    visit songs_path
+  context 'as a visitor' do
 
-    visitor_sees_list_of_songs
+    scenario 'to songs index page' do
+      visit songs_path
+
+      visitor_sees_list_of_songs
+    end
+
+    scenario 'to songs show page' do
+      visit songs_path
+
+      click_song_title_link
+
+      visitor_sees_song_show_page
+    end
   end
 
-  scenario 'as a user on songs index page' do
-    sign_up
+  context 'as a user' do
+    background do
+      @user = create(:user)
+    end
+    scenario 'on songs index page' do
+      visit songs_path as: @user
 
-    visit songs_path
+      user_sees_list_of_songs
+    end
 
-    user_sees_list_of_songs
-  end
 
-  scenario 'as a visitor to songs show page' do
-    visit songs_path
+    scenario 'on song show page' do
+      visit songs_path as: @user
 
-    click_song_title_link
+      click_song_title_link
 
-    visitor_sees_song_show_page
-  end
-
-  scenario 'as a user on the songs show page' do
-    sign_up
-
-    visit songs_path
-
-    click_song_title_link
-
-    user_sees_song_show_page
+      user_sees_song_show_page
+    end
   end
 
   def create_songs(song_titles)
