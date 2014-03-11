@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 feature 'View songs' do
-  before :each do
-    create_songs(['Come Thou Fount', 'Lord I Lift'])
+  background do
+    create_songs ['Come Thou Fount', 'Lord I Lift']
   end
 
   scenario 'as a visitor to songs index page' do
