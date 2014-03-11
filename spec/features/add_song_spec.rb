@@ -6,11 +6,9 @@ feature 'Add new song' do
 
     sign_up
 
-    click_link 'Add a song'
-    fill_in 'Title', with: 'Come Thou Fount'
-    click_button 'Create Song'
+    add_song_with_title 'Come Thou Fount'
 
-    expect(page).to have_css 'li.song', text: 'Come Thou Fount'
+    user_sees_song_titled 'Come Thou Fount'
   end
 
   scenario 'from songs index' do
@@ -19,11 +17,10 @@ feature 'Add new song' do
     sign_up
 
     visit songs_path
-    click_link 'Add a song'
-    fill_in 'Title', with: 'Come Thou Fount'
-    click_button 'Create Song'
 
-    expect(page).to have_css 'li.song', text: 'Come Thou Fount'
+    add_song_with_title 'Come Thou Fount'
+
+    user_sees_song_titled 'Come Thou Fount'
   end
 
   scenario 'visitors cannot add songs from homepage' do
@@ -35,8 +32,17 @@ feature 'Add new song' do
   scenario 'visitors cannot add songs via new_song_path' do
     visit new_song_path
 
-    expect(page).to have_content 'Sign up'
     expect(current_path).to eq sign_in_path
+  end
+
+  def add_song_with_title(title)
+    click_link 'Add a song'
+    fill_in 'Title', with: title
+    click_button 'Create Song'
+  end
+
+  def user_sees_song_titled(title)
+    expect(page).to have_css 'li.song', text: 'Come Thou Fount'
   end
 end
 
