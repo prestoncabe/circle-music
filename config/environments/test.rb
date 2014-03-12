@@ -36,4 +36,6 @@ CircleMusic::Application.configure do
 
   # suggestion by clearance
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.middleware.use Clearance::BackDoor
 end

@@ -7,11 +7,20 @@ gem 'rails', '4.0.2'
 gem 'sqlite3'
 
 # for user authentication
-gem 'clearance'
+gem 'clearance', '~> 1.2.1'
 
 group :test, :development do
   gem 'rspec-rails'
-  gem 'capybara'
+  gem 'capybara', '~> 2.0'
+end
+
+group :test do
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'simplecov', '~> 0.7.1', require: false
+end
+
+group :development do
+  gem 'pry-rails'
 end
 
 # Use SCSS for stylesheets
