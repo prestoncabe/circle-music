@@ -5,6 +5,9 @@ Songs
 
 <ul>
   <% @songs.each do |song| %>
-    <li class='song'><%= link_to song.title, song_path(song) %></li>
+    <li class='song'>
+      <%= link_to song.title, song_path(song) %>
+      <%= delete_link(song) %>
+    </li>
   <% end %>
 </ul>
