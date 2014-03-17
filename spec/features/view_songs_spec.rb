@@ -5,36 +5,59 @@ feature 'View songs' do
     create_songs ['Come Thou Fount', 'Lord I Lift']
   end
 
-  context 'as a visitor' do
+  context 'visitors' do
 
-    scenario 'to songs index page' do
-      visit songs_path
+    scenario 'can navigate to song list from the homepage' do
+      visit root_path
+
+      click_link 'Song list'
 
       visitor_sees_list_of_songs
     end
 
-    scenario 'to songs show page' do
+    scenario 'can navigate back to song list from individual song' do
+      visit songs_path
+
+      click_song_title_link
+      click_link 'Back to song list'
+
+      visitor_sees_list_of_songs
+    end
+
+    scenario 'can view individual song from song list' do
       visit songs_path
 
       click_song_title_link
 
       visitor_sees_song_show_page
     end
+
   end
 
-  context 'as a user' do
+  context 'users' do
 
     background do
       @user = create(:user)
     end
 
-    scenario 'on songs index page' do
-      visit songs_path as: @user
+    scenario 'can navigate to song list from the homepage' do
+      visit root_path as: @user
+
+      click_link 'Song list'
 
       user_sees_list_of_songs
     end
 
-    scenario 'on song show page' do
+    scenario 'can navigate back to song list from individual song' do
+      visit songs_path as: @user
+
+      click_song_title_link
+      click_link 'Back to song list'
+
+      user_sees_list_of_songs
+    end
+
+    scenario 'can view individual song from song list' do
       visit songs_path as: @user
 
       click_song_title_link
