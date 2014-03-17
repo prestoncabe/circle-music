@@ -23,15 +23,16 @@ feature 'View songs' do
   end
 
   context 'as a user' do
+
     background do
       @user = create(:user)
     end
+
     scenario 'on songs index page' do
       visit songs_path as: @user
 
       user_sees_list_of_songs
     end
-
 
     scenario 'on song show page' do
       visit songs_path as: @user
