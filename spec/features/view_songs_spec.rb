@@ -24,13 +24,7 @@ feature 'View songs' do
       visitor_sees_list_of_songs
     end
 
-    scenario 'can view song list' do
-      visit songs_path
-
-      visitor_sees_list_of_songs
-    end
-
-    scenario 'can view individual song' do
+    scenario 'can view individual song from song list' do
       visit songs_path
 
       click_song_title_link
@@ -63,13 +57,7 @@ feature 'View songs' do
       user_sees_list_of_songs
     end
 
-    scenario 'can view song list' do
-      visit songs_path as: @user
-
-      user_sees_list_of_songs
-    end
-
-    scenario 'can view individual song' do
+    scenario 'can view individual song from song list' do
       visit songs_path as: @user
 
       click_song_title_link
