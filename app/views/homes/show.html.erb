@@ -4,6 +4,8 @@
 
 <p data-role='description'>Welcome to the music library for Circle of Hope</p>
 
+<%= link_to 'Song list', songs_path %>
+
 <% if signed_in? %>
   <%= link_to 'Add a song', new_song_path %>
 <% end %>
