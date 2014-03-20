@@ -7,7 +7,12 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-
+    <div>
+      <%= form_for(:search, url: search_path, method: :get) do |form| %>
+        <%= form.text_field :term, placeholder: 'Search songs' %>
+        <%= form.submit 'Go' %>
+      <% end %>
+    </div>
     <div>
       <% if signed_in? %>
         Signed in as: <%= current_user.email %>
