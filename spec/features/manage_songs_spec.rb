@@ -2,11 +2,11 @@ require 'spec_helper'
 
 feature 'Manage songs' do
   background do
-    @user = create(:user)
+    @generic_user = create(:user)
   end
 
   scenario 'add new song from homepage' do
-    visit root_path as: @user
+    visit root_path as: @generic_user
 
     add_song_with_title 'Come Thou Fount'
 
@@ -14,7 +14,7 @@ feature 'Manage songs' do
   end
 
   scenario 'add new song from songs index' do
-    visit songs_path as: @user
+    visit songs_path as: @generic_user
 
     add_song_with_title 'Come Thou Fount'
 
@@ -31,6 +31,29 @@ feature 'Manage songs' do
     visit new_song_path
 
     expect(current_path).to eq sign_in_path
+  end
+
+  scenario 'delete song as admin from songs index page' do
+    create(:song, title: 'Come Thou Fount')
+    create(:song, title: 'Lord I Lift')
+    admin_user = create(:user, email: 'admin@example.com', admin: true)
+
+    visit songs_path as: admin_user
+    within "li.song:contains('Lord I Lift')" do
+      click_link 'delete'
+    end
+
+    expect(page).not_to have_content 'Lord I Lift'
+  end
+
+  scenario 'non-admins cannot delete songs' do
+    create(:song, title: 'Come Thou Fount')
+    create(:song, title: 'Lord I Lift')
+    non_admin_user = create(:user, email: 'nonadmin@example.com')
+
+    visit songs_path as: non_admin_user
+
+    expect(page).not_to have_content 'delete'
   end
 
   def add_song_with_title(title)
