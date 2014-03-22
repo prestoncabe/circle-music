@@ -3,67 +3,58 @@ require 'spec_helper'
 feature 'View songs' do
   background do
     create_songs ['Come Thou Fount', 'Lord I Lift']
+    @user = create(:user)
   end
 
-  context 'visitors' do
+  scenario 'guest can navigate to song list from the homepage' do
+    visit root_path
 
-    scenario 'can navigate to song list from the homepage' do
-      visit root_path
+    click_link 'Song list'
 
-      click_link 'Song list'
-
-      visitor_sees_list_of_songs
-    end
-
-    scenario 'can navigate back to song list from individual song' do
-      visit songs_path
-
-      click_song_title_link
-      click_link 'Back to song list'
-
-      visitor_sees_list_of_songs
-    end
-
-    scenario 'can view individual song from song list' do
-      visit songs_path
-
-      click_song_title_link
-
-      visitor_sees_song_show_page
-    end
-
+    visitor_sees_list_of_songs
   end
 
-  context 'users' do
+  scenario 'guest can navigate back to song list from individual song' do
+    visit songs_path
 
-    background do
-      @user = create(:user)
-    end
+    click_song_title_link
+    click_link 'Back to song list'
 
-    scenario 'can navigate to song list from the homepage' do
-      visit root_path as: @user
+    visitor_sees_list_of_songs
+  end
 
-      click_link 'Song list'
+  scenario 'guest can view individual song from song list' do
+    visit songs_path
 
-      user_sees_list_of_songs
-    end
+    click_song_title_link
 
-    scenario 'can navigate back to song list from individual song' do
-      visit songs_path as: @user
+    visitor_sees_song_show_page
+  end
 
-      click_song_title_link
-      click_link 'Back to song list'
 
-      user_sees_list_of_songs
-    end
+  scenario 'user can navigate to song list from the homepage' do
+    visit root_path as: @user
 
-    scenario 'can view individual song from song list' do
-      visit songs_path as: @user
+    click_link 'Song list'
 
-      click_song_title_link
+    user_sees_list_of_songs
+  end
 
-      user_sees_song_show_page
-    end
+  scenario 'user can navigate back to song list from individual song' do
+    visit songs_path as: @user
+
+    click_song_title_link
+    click_link 'Back to song list'
+
+    user_sees_list_of_songs
+  end
+
+  scenario 'user can view individual song from song list' do
+    visit songs_path as: @user
+
+    click_song_title_link
+
+    user_sees_song_show_page
   end
 
   def create_songs(song_titles)
