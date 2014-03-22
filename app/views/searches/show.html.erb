@@ -1,0 +1,9 @@
+<h1>Search for <%= @search.term %></h1>
+<ul>
+<% #TODO: unify songs index and search by factoring out a song partial %>
+<% @search.songs.each do |song| %>
+  <li>
+    <%= song.title %>
+  </li>
+<% end %>
+</ul>
