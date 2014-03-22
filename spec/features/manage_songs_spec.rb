@@ -1,35 +1,33 @@
 require 'spec_helper'
 
-feature 'Add new song' do
-  scenario 'from the homepage' do
-    visit root_path
+feature 'Manage songs' do
+  background do
+    @user = create(:user)
+  end
 
-    sign_up
+  scenario 'add new song from homepage' do
+    visit root_path as: @user
 
     add_song_with_title 'Come Thou Fount'
 
     user_sees_song_titled 'Come Thou Fount'
   end
 
-  scenario 'from songs index' do
-    visit root_path
-
-    sign_up
-
-    visit songs_path
+  scenario 'add new song from songs index' do
+    visit songs_path as: @user
 
     add_song_with_title 'Come Thou Fount'
 
     user_sees_song_titled 'Come Thou Fount'
   end
 
-  scenario 'visitors cannot add songs from homepage' do
+  scenario 'guest cannot add songs from homepage' do
     visit root_path
 
     expect(page).not_to have_link 'Add a song'
   end
 
-  scenario 'visitors cannot add songs via new_song_path' do
+  scenario 'guest cannot add songs via new_song_path' do
     visit new_song_path
 
     expect(current_path).to eq sign_in_path
