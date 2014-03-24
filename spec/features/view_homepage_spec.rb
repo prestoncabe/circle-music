@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'View the homepage' do
-  scenario 'as a visitor' do
+  scenario 'as a guest' do
     visit root_path
 
     expect(page).to have_title 'CircleMusic'

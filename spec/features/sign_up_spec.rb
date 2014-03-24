@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 feature 'Sign up' do
-  scenario 'visitors can sign up from the homepage' do
+  scenario 'guests can sign up from the homepage' do
     visit root_path
 
     sign_up_as 'person@example.com'
 
     expect(page).to have_title 'CircleMusic'
     expect(page).to have_css '[data-role="description"]'
-    expect(page).to have_content 'Signed in as: person@example.com'
+    expect(page).to have_text 'Signed in as: person@example.com'
   end
 
   scenario 'signed in users do not see sign up link' do
