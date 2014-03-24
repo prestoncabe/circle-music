@@ -10,7 +10,7 @@ feature 'Search for songs' do
     fill_in 'Search songs', with: 'Lord'
     click_button 'Go'
 
-    expect(page).to have_content 'Lord I Lift'
-    expect(page).not_to have_content 'Come Thou Fount'
+    expect(page).to have_text 'Lord I Lift'
+    expect(page).not_to have_text 'Come Thou Fount'
   end
 end

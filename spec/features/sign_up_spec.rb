@@ -8,7 +8,7 @@ feature 'Sign up' do
 
     expect(page).to have_title 'CircleMusic'
     expect(page).to have_css '[data-role="description"]'
-    expect(page).to have_content 'Signed in as: person@example.com'
+    expect(page).to have_text 'Signed in as: person@example.com'
   end
 
   scenario 'signed in users do not see sign up link' do
