@@ -11,27 +11,26 @@ end
 describe Search, '#songs' do
   context 'when #term matches one song' do
     it 'returns the matched song' do
-      # TODO: create specs-wide way to create a few example songs?
-      create(:song, title: 'Lord I Lift')
+      matched_song = create(:song, title: 'Lord I Lift')
       create(:song, title: 'Come Thou Fount')
 
       search = Search.new(term: 'Lord')
 
       expect(search.songs.length).to eq 1
-      expect(search.songs.first.title).to eq 'Lord I Lift'
+      expect(search.songs.first).to eq matched_song
     end
   end
 
   context 'when #term matches more than one song' do
     it 'returns all matched songs' do
       create(:song, title: 'Come Thou Fount')
-      create(:song, title: 'Lord I Lift')
-      create(:song, title: 'Holy is the Lord')
+      matched_song1 = create(:song, title: 'Lord I Lift')
+      matched_song2 = create(:song, title: 'Holy is the Lord')
 
       search = Search.new(term: 'Lord')
 
       expect(search.songs.length).to eq 2
-      expect(search.songs.pluck(:title)).to match_array ['Lord I Lift', 'Holy is the Lord']
+      expect(search.songs).to match_array [matched_song1, matched_song2]
     end
   end
 end
