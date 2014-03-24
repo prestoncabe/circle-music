@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Sign up' do
-  scenario 'visitors can sign up from the homepage' do
+  scenario 'guests can sign up from the homepage' do
     visit root_path
 
     sign_up_as 'person@example.com'

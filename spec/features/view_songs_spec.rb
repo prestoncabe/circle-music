@@ -11,7 +11,7 @@ feature 'View songs' do
 
     click_link 'Song list'
 
-    visitor_sees_list_of_songs
+    guest_sees_list_of_songs
   end
 
   scenario 'guest can navigate back to song list from individual song' do
@@ -20,7 +20,7 @@ feature 'View songs' do
     click_song_title_link
     click_link 'Back to song list'
 
-    visitor_sees_list_of_songs
+    guest_sees_list_of_songs
   end
 
   scenario 'guest can view individual song from song list' do
@@ -28,7 +28,7 @@ feature 'View songs' do
 
     click_song_title_link
 
-    visitor_sees_song_show_page
+    guest_sees_song_show_page
   end
 
 
@@ -68,7 +68,7 @@ feature 'View songs' do
     expect(page).to have_css 'li.song', text: 'Lord I Lift'
   end
 
-  def visitor_sees_list_of_songs
+  def guest_sees_list_of_songs
     user_sees_list_of_songs
   end
 
@@ -76,12 +76,12 @@ feature 'View songs' do
     click_link 'Come Thou Fount'
   end
 
-  def visitor_sees_song_show_page
+  def guest_sees_song_show_page
     expect(page).to have_content 'Come Thou Fount'
     expect(page).not_to have_content 'Lord I Lift'
   end
 
   def user_sees_song_show_page
-    visitor_sees_song_show_page
+    guest_sees_song_show_page
   end
 end
