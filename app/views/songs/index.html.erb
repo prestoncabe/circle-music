@@ -1,13 +1,8 @@
-Songs
+<h1>Song List</h1>
 <div>
   <%= link_to 'Add a song', new_song_path %>
 </div>
 
 <ul>
-  <% @songs.each do |song| %>
-    <li class='song'>
-      <%= link_to song.title, song_path(song) %>
-      <%= delete_link(song) %>
-    </li>
-  <% end %>
+  <%= render @songs %>
 </ul>
