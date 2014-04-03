@@ -1,2 +1,8 @@
 <%= link_to 'Back to song list', songs_path %>
-<h1><%= @song.title %>
+<h1><%= @song.title %></h1>
+<div>
+  <b>Notes</b><br/>
+  <p>
+    <%= @song.notes %>
+  </p>
+</div>
