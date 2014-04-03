@@ -5,6 +5,7 @@ ruby '2.1.1'
 gem 'rails', '4.0.2'
 
 gem 'pg'
+gem 'pry-rails'
 
 # for user authentication
 gem 'clearance', '~> 1.2.1'
@@ -17,10 +18,10 @@ end
 group :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'simplecov', '~> 0.7.1', require: false
+  gem 'launchy'
 end
 
 group :development do
-  gem 'pry-rails'
 end
 
 group :production do

@@ -78,6 +78,7 @@ feature 'View songs' do
 
   def guest_sees_song_show_page
     expect(page).to have_text 'Come Thou Fount'
+    expect(page).to have_text 'these are some miscellaneous notes'
     expect(page).not_to have_text 'Lord I Lift'
   end
 
