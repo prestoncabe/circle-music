@@ -18,6 +18,7 @@ end
 group :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'simplecov', '~> 0.7.1', require: false
+  gem 'launchy'
 end
 
 group :development do
