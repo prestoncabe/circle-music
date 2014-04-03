@@ -5,6 +5,7 @@ ruby '2.1.1'
 gem 'rails', '4.0.2'
 
 gem 'pg'
+gem 'pry-rails'
 
 # for user authentication
 gem 'clearance', '~> 1.2.1'
@@ -20,7 +21,6 @@ group :test do
 end
 
 group :development do
-  gem 'pry-rails'
 end
 
 group :production do
