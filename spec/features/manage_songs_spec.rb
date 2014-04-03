@@ -8,7 +8,7 @@ feature 'Manage songs' do
   scenario 'add new song from homepage' do
     visit root_path as: @generic_user
 
-    add_song_with_title 'Come Thou Fount'
+    add_song(title: 'Come Thou Fount', notes: 'an oldie-but-goodie hymn')
 
     user_sees_song_titled 'Come Thou Fount'
   end
@@ -16,7 +16,7 @@ feature 'Manage songs' do
   scenario 'add new song from songs index' do
     visit songs_path as: @generic_user
 
-    add_song_with_title 'Come Thou Fount'
+    add_song title: 'Come Thou Fount'
 
     user_sees_song_titled 'Come Thou Fount'
   end
@@ -55,9 +55,10 @@ feature 'Manage songs' do
     expect(page).not_to have_text 'delete'
   end
 
-  def add_song_with_title(title)
+  def add_song(options={})
     click_link 'Add a song'
-    fill_in 'Title', with: title
+    fill_in 'Title', with: options.fetch(:title, '')
+    fill_in 'Notes', with: options.fetch(:notes, '')
     click_button 'Create Song'
   end
 
@@ -66,6 +67,7 @@ feature 'Manage songs' do
       click_link 'delete'
     end
   end
+
   def user_sees_song_titled(title)
     expect(page).to have_css 'li.song', text: title
   end
