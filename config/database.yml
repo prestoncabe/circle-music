@@ -11,6 +11,6 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: circle-music_development
+  database: circle-music_test
   password:
   pool: 5

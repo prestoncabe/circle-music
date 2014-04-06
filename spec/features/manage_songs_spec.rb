@@ -55,6 +55,18 @@ feature 'Manage songs' do
     expect(page).not_to have_text 'delete'
   end
 
+  scenario 'add link as a user' do
+    song = create(:song)
+    visit song_path(song, as: @generic_user)
+
+    click_link 'New Link'
+    fill_in 'Name', with: 'Cool Video Performance'
+    fill_in 'Url', with: 'http://www.youtube.com'
+    click_button 'Add Link'
+
+    expect(page).to have_text 'Cool Video Performance'
+  end
+
   def add_song(options={})
     click_link 'Add a song'
     fill_in 'Title', with: options.fetch(:title, '')

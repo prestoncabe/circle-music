@@ -17,6 +17,7 @@ class SongsController < ApplicationController
 
   def show
     @song = Song.find(params[:id])
+    @links = @song.links
   end
 
   def destroy
