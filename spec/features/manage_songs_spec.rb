@@ -67,6 +67,20 @@ feature 'Manage songs' do
     expect(page).to have_text 'Cool Video Performance'
   end
 
+  scenario 'guests do not see New Link option on song show page' do
+    song = create(:song)
+    visit song_path(song)
+
+    expect(page).not_to have_text 'New Link'
+  end
+
+  scenario 'guests cannot add link via new_song_link path' do
+    song = create(:song)
+    visit new_song_link_path(song)
+
+    expect(current_path).to eq sign_in_path
+  end
+
   def add_song(options={})
     click_link 'Add a song'
     fill_in 'Title', with: options.fetch(:title, '')

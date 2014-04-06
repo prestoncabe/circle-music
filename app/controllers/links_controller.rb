@@ -1,4 +1,6 @@
 class LinksController < ApplicationController
+  before_filter :authorize
+
   def new
     @song = Song.find(params[:song_id])
     @link = @song.links.new
