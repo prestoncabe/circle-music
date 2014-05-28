@@ -10,7 +10,7 @@ gem 'pry-rails'
 gem 'clearance', '~> 1.2.1'
 
 group :test, :development do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.14.0'
   gem 'capybara', '~> 2.0'
 end
 
@@ -18,9 +18,6 @@ group :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'simplecov', '~> 0.7.1', require: false
   gem 'launchy'
-end
-
-group :development do
 end
 
 group :production do
