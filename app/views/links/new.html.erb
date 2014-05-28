@@ -1,0 +1,14 @@
+<h1><%= "New link for \"#{@song.title}\"" %></h1>
+<div>
+  <%= form_for([@song, @link]) do |form| %>
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+    <div>
+      <%= form.label :url %>
+      <%= form.text_field :url %>
+    </div>
+    <%= form.submit 'Add Link' %>
+  <% end %>
+</div>
