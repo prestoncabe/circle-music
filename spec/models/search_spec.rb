@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Search, '.initialize' do
   it 'takes a term for searching' do
