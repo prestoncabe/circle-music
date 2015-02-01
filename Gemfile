@@ -10,7 +10,7 @@ gem 'pry-rails'
 gem 'clearance', '~> 1.2.1'
 
 group :test, :development do
-  gem 'rspec-rails', '~> 2.14.0'
+  gem 'rspec-rails', '~> 3.1.0'
   gem 'capybara', '~> 2.0'
 end
 

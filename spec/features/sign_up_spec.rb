@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Sign up' do
   scenario 'guests can sign up from the homepage' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Search for songs' do
   scenario 'from the homepage' do
