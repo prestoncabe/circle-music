@@ -1,0 +1,20 @@
+@import 'vendor/vendor';
+@import 'bourbon';
+@import 'neat';
+
+@import 'base/base';
+
+.container {
+  @include outer-container;
+
+  .left {
+    @include span-columns(3);
+  }
+
+  .right {
+    @include span-columns(9);
+    div {
+      @include span-columns(3 of 9);
+    }
+  }
+}

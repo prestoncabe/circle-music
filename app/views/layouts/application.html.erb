@@ -7,28 +7,41 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div>
-      <%= form_for(:search, url: search_path, method: :get) do |form| %>
-        <%= form.text_field :term, placeholder: 'Search songs' %>
-        <%= form.submit 'Go' %>
-      <% end %>
-    </div>
-    <div>
-      <% if signed_in? %>
-        Signed in as: <%= current_user.email %>
-      <%= link_to 'Sign out', sign_out_path, :method => :delete %>
-      <% else %>
-        <%= link_to 'Sign in', sign_in_path %>
-      <% end %>
-    </div>
+    <div class='container'>
+      <section class='left'>
+        <div>
+          <%= form_for(:search, url: search_path, method: :get) do |form| %>
+            <%= form.text_field :term, placeholder: 'Search songs' %>
+            <%= form.submit 'Go' %>
+          <% end %>
+        </div>
+        <div>
+          <% if signed_in? %>
+            Signed in as: <%= current_user.email %>
+          <%= link_to 'Sign out', sign_out_path, :method => :delete %>
+        <% else %>
+          <%= link_to 'Sign in', sign_in_path %>
+        <% end %>
+      </div>
 
-    <div id="flash">
-      <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
-      <% end %>
-    </div>
-
-    <%= yield %>
-
+      <div id="flash">
+        <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
+      </div>
+    </section>
+    <section class='right'>
+      <%= yield %>
+      <div>
+        1
+      </div>
+      <div>
+        2
+      </div>
+      <div>
+        3
+      </div>
+    </section>
+  </div>
 </body>
 </html>
